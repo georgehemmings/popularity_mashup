@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Popularity Mashup</title>
+    
+    <style>
+      div.chart { 
+        clear: both; 
+      }
+      
+      #charts {
+        margin: 20px 0px;
+      }
+      
+      #bands { 
+        width: 300px; 
+      }
+    </style>
+    
+    <script src='http://www.google.com/jsapi'></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="application.js"></script>
+  </head>
+  <body>
+    <h1>Compare band popularity on online services</h1>
+    <p>
+      Enter a comma separated list of bands to compare.
+      You can compare up to three bands at a time.
+    </p>
+    <form>
+      <!-- <label for="bands">Bands</label>  -->
+      <input id="bands" name="bands" placeholder="blink-182, Green Day, Sum 41" type="text" autofocus required>
+      <input type="submit" id="compare" value="Compare">
+    </form>
+    <div id="charts"></div>
+  </body>
+</html>
