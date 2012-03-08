@@ -17,8 +17,6 @@ jQuery ->
     $bands.val(bands.join(', '))
     
     unless bands.length is 0 
-      event.preventDefault() 
-
       $input = $('input')
       $input.attr("disabled", true)
       $input.ajaxStop( ->
