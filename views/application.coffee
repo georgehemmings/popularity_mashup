@@ -18,9 +18,9 @@ jQuery ->
     
     unless bands.length is 0 
       $input = $('input')
-      $input.attr("disabled", true)
+      $input.attr('disabled', true)
       $input.ajaxStop( ->
-        $input.attr("disabled", false)
+        $input.attr('disabled', false)
       )
     
       for type in [
@@ -29,9 +29,9 @@ jQuery ->
         'lastfm_listeners',
         'twitter_followers' 
       ]
-        data = [ { name: "type", value: type }, { name: "bands", value: bands } ]
+        data = [ { name: 'type', value: type }, { name: 'bands', value: bands } ]
     
         $('<div>').load('/chart', $.param(data), ->
-          $("#charts").append $(this)
+          $('#charts').append $(this)
         )
         
