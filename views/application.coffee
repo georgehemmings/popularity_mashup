@@ -1,7 +1,5 @@
 parse_csv_omit_empty = (values)->
-  values.trim().split(/\s*,\s*/).filter( (value)-> 
-    value isnt ''
-  )
+  values.trim().split(/\s*,\s*/).filter(String)
   
 jQuery ->  
   $('form').submit ->
