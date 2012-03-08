@@ -26,7 +26,7 @@ get '/chart' do
   type = (params[:type] || '').to_sym
   halt unless type_valid? type
   
-  bands = parse_comma_seperated_values(params[:bands]).first(3)  
+  bands = parse_csv_omit_empty(params[:bands]).first(3)  
   
   data = send type, bands
   
@@ -47,7 +47,7 @@ TYPES = {
   twitter_followers: "Twitter Followers" 
 }
 
-def parse_comma_seperated_values(values)
+def parse_csv_omit_empty(values)
   return [] if values.nil?
   values.split(/\s*,\s*/).reject(&:empty?)
 end
