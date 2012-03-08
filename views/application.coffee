@@ -3,10 +3,11 @@ parse_csv_omit_empty = (values)->
     value isnt ''
   )
   
-jQuery ->
-  $compare = $('#compare')
-    
-  $compare.click (event)->    
+jQuery ->  
+  $('form').submit ->
+    false
+  
+  $('#compare').click (event)->    
     $charts = $('#charts')
     $charts.empty()  
   
@@ -18,9 +19,10 @@ jQuery ->
     unless bands.length is 0 
       event.preventDefault() 
 
-      $compare.attr("disabled", true)
-      $compare.ajaxStop( ->
-        $compare.attr("disabled", false)
+      $input = $('input')
+      $input.attr("disabled", true)
+      $input.ajaxStop( ->
+        $input.attr("disabled", false)
       )
     
       for type in [
