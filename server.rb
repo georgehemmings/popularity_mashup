@@ -41,10 +41,10 @@ get '/application.js' do
 end
 
 TYPES = { 
-  spotify_popularity: "Spotify Popularity",
-  facebook_likes: "Facebook Likes",
-  lastfm_listeners: "Last.fm Listeners",
-  twitter_followers: "Twitter Followers" 
+  spotify_popularity: 'Spotify Popularity',
+  facebook_likes: 'Facebook Likes',
+  lastfm_listeners: 'Last.fm Listeners',
+  twitter_followers: 'Twitter Followers' 
 }
 
 def parse_csv_omit_empty(values)
