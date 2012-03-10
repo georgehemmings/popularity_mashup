@@ -49,7 +49,7 @@ TYPES = {
 
 def parse_csv_omit_empty(values)
   return [] if values.nil?
-  values.split(/\s*,+\s*/).reject(&:empty?)
+  values.strip.split(/\s*,+\s*/).reject(&:empty?)
 end
 
 def type_valid?(type)
