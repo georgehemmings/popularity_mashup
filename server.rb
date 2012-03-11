@@ -21,18 +21,18 @@ get '/' do
 end
 
 get '/chart' do
-  redirect to('/') unless request.xhr? 
-  
+  redirect to('/') unless request.xhr?
+
   type = (params[:type] || '').to_sym
   halt unless type_valid? type
-  
-  bands = parse_csv_omit_empty(params[:bands]).first(3)  
-  
+
+  bands = parse_csv_omit_empty(params[:bands]).first(3)
+
   data = send type, bands
-  
+
   @chart = create_chart(chart_title(type), data)
   @type = type
-  
+
   erb :chart
 end
 
@@ -40,11 +40,11 @@ get '/application.js' do
   coffee :application
 end
 
-TYPES = { 
+TYPES = {
   spotify_popularity: 'Spotify Popularity',
   facebook_likes: 'Facebook Likes',
   lastfm_listeners: 'Last.fm Listeners',
-  twitter_followers: 'Twitter Followers' 
+  twitter_followers: 'Twitter Followers'
 }
 
 def parse_csv_omit_empty(values)
@@ -108,13 +108,13 @@ def lastfm_listeners(bands)
   unless !settings.lastfm_api_key.nil? && !settings.lastfm_api_key.empty?
     halt
   end
-  
+
   lastfm = Lastfm.new(settings.lastfm_api_key, nil)
   listeners = bands.map do |band|
-    begin    
+    begin
       listeners = lastfm.artist.get_info(band)['stats']['listeners']
       listeners.to_i
-    rescue  
+    rescue
       0
     end
   end
@@ -124,8 +124,8 @@ end
 def twitter_followers(bands)
   followers = bands.map do |band|
     begin
-      # Searching Twitter by band name is unreliable, the first result is rarely 
-      # the correct account. Instead, lookup the band's microblog URL on 
+      # Searching Twitter by band name is unreliable, the first result is rarely
+      # the correct account. Instead, lookup the band's microblog URL on
       # MusicBrainz, if found, it's most likely the URL of the bands Twitter account.
       microblog_url = MusicBrainz::Artist.find_by_name(band).urls[:microblog]
       twitter_username = (/.*twitter.*\/(\w+)\/?$/.match(microblog_url))[1]
