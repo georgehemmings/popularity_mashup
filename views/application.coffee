@@ -15,7 +15,7 @@ jQuery ->
     $bands.val(bands.join(', '))
 
     unless bands.length is 0
-      $input = $('input')
+      $input = $('input, button')
       $input.attr('disabled', true)
       $input.ajaxStop( ->
         $input.attr('disabled', false)
